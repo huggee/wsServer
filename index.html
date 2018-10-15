@@ -1,0 +1,55 @@
+:<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>websocket-chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>WebSocket-Chat</h1>
+    <div id='mode' class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-primary active">
+      <input type="radio" name="options" autocomplete="off" value="state1" checked> 1
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" autocomplete="off" value="state2"> 2
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" autocomplete="off" value="state3"> 3
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" autocomplete="off" value="state4"> 4
+    </label>
+    </div>
+    <br>
+    <a href="#" class="btn btn-default" id="testbtn">btn-default</a>
+    <a href="#" class="btn btn-default" id="testbtn2">btn-default2</a>
+    <br>
+
+  </div>
+    
+  <script type="text/javascript">
+    var ws = new WebSocket('ws://localhost:3000');
+
+    ws.onmessage = function ( event ) {
+      $("#testbtn2").text(event.data);
+    };
+
+    $(function(){
+      $('#mode input[type=radio]').change( function(e){
+        $("#testbtn").text(this.value);
+        ws.send(this.value);
+      });
+    });
+
+  </script>
+</body>
+</html>
