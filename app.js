@@ -14,7 +14,7 @@ var connections = [];
 wss.on('connection', function(ws){
     connections.push(ws);
     console.log('connection');
-    ws.send('Hello from js');
+    // ws.send('Hello from js');
 
     ws.on('close', function(){
         console.log('close');
@@ -27,7 +27,7 @@ wss.on('connection', function(ws){
     ws.on('message', function(message){
         console.log('recv: %s', message);
         broadcast((message));
-        ws.send('Hello from js');
+        // ws.send('Hello from js');
     });
 
 });
