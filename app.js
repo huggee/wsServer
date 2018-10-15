@@ -8,7 +8,6 @@ var server = http.createServer(function(req, res){
 
 
 var wss = new WebSocketServer({ server: server});
-server.listen(process.env.PORT || 3000);
 
 var connections = [];
 
@@ -38,4 +37,6 @@ function broadcast(message) {
         con.send(message);
     });
 };
+
+server.listen(process.env.PORT || 3000);
 
