@@ -36,7 +36,7 @@
   </div>
     
   <script type="text/javascript">
-    var ws = new WebSocket();
+    var ws = new WebSocket('ws://wsserver2arduino-demo.azurewebsites.net/');
 
     ws.onmessage = function ( event ) {
       $("#testbtn2").text(event.data);
